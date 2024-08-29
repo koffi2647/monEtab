@@ -1,0 +1,53 @@
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Utilisateur</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href=""> 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <a href="{% url 'user:index' %}">
+        <button>Retour</button>
+    </a>
+</head>
+<body>
+    <div class="sidebar">
+        <img src="image.avif" alt="Logo de l'Établissement">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="{% url 'dashboard:index' %}">Dashboard</a></li>
+            <li><a href="{% url 'student:index' %}">Élèves</a></li>
+            <li><a href="{% url 'teacher:index' %}">Professeurs</a></li>
+            <li><a href="{% url 'user:index' %}">Utilisateurs</a></li>
+            <li><a href="{% url 'report:index' %}">Rapports</a></li>
+        </ul>
+        <div class="logout-button" onclick="logout()">Se déconnecter</div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h1>Ajouter un Utilisateur</h1>
+        </header>
+
+        <div class="form-container">
+            <h2>Formulaire d'Ajout</h2>
+            <form method="POST" id="add-user-form" action="" method="post">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="form-actions">
+                    <input type="submit" value="Enregistrer">
+                    <input type="reset" value="Annuler">
+                </div>
+                <div class="form-message" id="form-message"></div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{%  load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Professeur</title>
+    
+    <link rel="stylesheet" href="{% static 'css/styleAjout.css'   %}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <a href="{% url 'teacher:index' %}">
+        <button>Retour</button>
+    </a>
+</head>
+<body>
+    
+
+    <div class="main-content">
+        <header>
+            <h1>Ajouter Professeurs</h1>
+        </header>
+
+        <div class="form-container">
+            <h2>Formulaire d'ajout professeurs</h2>
+            <form id="add-prof-form" action="" method="post">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <br><br>
+
+                <div class="form-actions">
+                    <button type="submit" class="save-button">Enregistrer</button>
+                    <button type="reset" class="cancel-button" onclick="cancel()">Annuler</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+
+   
+    {% endblock content %}
+

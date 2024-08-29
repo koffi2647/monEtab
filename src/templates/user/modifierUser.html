@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un Utilisateur</title>
+    <a href="{% url 'user:index' %}">
+        <button>Retour</button>
+    </a>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styleModif.css' %}" />
+
+</head>
+<body>
+    <div class="sidebar">
+        <img src="image.avif" alt="Logo de l'Établissement">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="tableauBord.html">Dashboard</a></li>
+            <li><a href="ajoutEleve.html">Élèves</a></li>
+            <li><a href="ajoutProf.html">Professeurs</a></li>
+            <li><a href="ajouteUser.html">Utilisateurs</a></li>
+            <li><a href="rapports.html">Rapports</a></li>
+        </ul>
+        <div class="logout-button" onclick="logout()">Se déconnecter</div>
+    </div>
+    
+    <div class="main-content">
+        <header>
+            <h1>Modifier l'utilisateur</h1>
+        </header>
+
+        <div class="form-container">
+            <h2>Formulaire de modification de l'utilisateur</h2>
+            <form id="add-prof-form" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <br>
+                
+                <div class="form-actions">
+                    <button type="submit" class="save-button">Valider</button>
+                    <button type="button" class="cancel-button" onclick="cancel()">Annuler</button>
+                </div>
+                <div class="form-message" id="form-message"></div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<header>
+    {% block contenu %}<title>Students List</title>{% endblock contenu %}
+    <a href="{% url 'student:ajouterStudent' %}">
+        <button class="add-button">Nouvel Élève</button>
+    </a>
+    <a href="{% url 'dashboard:index' %}">
+        <button>Retour</button>
+    </a>
+</header>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Classe</th>
+            <th>Matricule</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+            <tr>
+                <td> {{ student.first_name }} </td>
+                <td> {{ student.last_name }} </td>
+                <td> {{ student.class_student }} </td>
+                <td> {{ student.register_number }} </td>
+                <td class="action-buttons">
+                    <a href="{% url 'student:modifierStudent' student.id %}">
+                        <button class="edit-button">Update</button>
+                    </a>
+                    <a href="{% url 'student:suprimer' student.id %}">
+                        <button class="update-button"  onclick="confirmDelete(1)">Remove</button>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+    function logout() {
+        // Implémentez la logique de déconnexion ici
+        alert('Déconnexion effectuée !');
+    }
+
+    function confirmDelete(id) {
+        const confirmation = confirm('Êtes-vous sûr de vouloir supprimer ce professeur ?');
+        if (confirmation) {
+            // Si l'utilisateur confirme la suppression
+            alert('Professeur avec ID ' + id + ' supprimé.');
+            
+            // Suppression de la ligne du tableau correspondante
+            const row = document.getElementById('prof-' + id);
+            row.remove();
+        }
+    }
+</script>
+
+{% endblock content %}

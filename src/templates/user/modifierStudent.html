@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block contenu %}
+<title>Add Student</title>
+{% endblock contenu %}
+
+{% block content %}
+    <div class="main-content">
+        <header>
+            <h1>Modifier un Élève</h1>
+            <a href="{% url 'student:index' %}">
+                <button>Retour</button>
+            </a>
+        </header>
+
+        <div class="form-container">
+            <h2>FOrmulaire de modification</h2>
+            <form id="add-student-form" action="" method="post">
+                {% csrf_token %}
+                {{ form | crispy }}
+                b" required>
+                </div>
+                <div class="form-group">
+                    <label for="class">Classe</label>
+                    <input type="text" id="class" name="class" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Téléphone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="city">Ville</label>
+                    <input type="text" id="city" name="city" required>
+                </div> 
+                <div class="form-actions">
+                    <button type="submit" class="save-button">Enregistrer</button>
+                    <button type="button" class="cancel-button" onclick="cancel()">Annuler</button>
+                </div>
+                <div class="form-message" id="form-message"></div>
+            </form>
+        </div>
+    </div>
+
+    
+    {% endblock content %}

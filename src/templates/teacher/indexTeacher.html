@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<header>
+    {% block contenu %}
+    <title>Liste des Professeurs</title>
+    {% endblock contenu %}
+    <h1>Liste des Professeurs</h1>
+    <a href="{% url 'teacher:ajouterTeacher' %}">
+        <button class="add-button">Nouveau professeur</button>
+    </a>
+</header>
+<a href="{% url 'dashboard:index' %}">
+    <button>Retour</button>
+</a>
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Ville</th>
+            <th>Telephone</th>
+            <th>Vacant</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for teacher in teachers %}
+            <tr id="prof-1">
+                <td> {{ teacher.first_name }} </td>
+                <td> {{ teacher.last_name }} </td>
+                <td> {{ teacher.city }} </td>
+                <td> {{ teacher.number }} </td>
+                <td> {{ teacher.vacation }} </td>
+                <td class="action-buttons">
+                    <a href="{% url 'teacher:modifierTeacher' teacher.id %}">
+                        <button class="edit-button">Update</button>
+                    </a>
+                    <a href="{% url 'teacher:suprimer' teacher.id %}">
+                        <button class="edit-button" onclick="confirmDelete(1)">Remove</button>
+                    </a>   
+                </td>
+            </tr>
+        {% endfor %}
+
+        <script>
+            function logout() {
+                // Implémentez la logique de déconnexion ici
+                alert('Déconnexion effectuée !');
+            }
+    
+            function confirmDelete(id) {
+                const confirmation = confirm('Êtes-vous sûr de vouloir supprimer ?');
+                if (confirmation) {
+                    // Si l'utilisateur confirme la suppression
+                    alert('Professeur avec ID ' + id + ' supprimé.');
+                    
+                    // Suppression de la ligne du tableau correspondante
+                    const row = document.getElementById('prof-' + id);
+                    row.remove();
+                }
+            }
+        </script>
+    
+    </tbody>
+</table>
+
+{% endblock content %}

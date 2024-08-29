@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static%}
+
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifier un Professeur</title>
+   <link rel="stylesheet" href="{% static 'css/styleModif' %}">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+
+    <div class="main-content">
+        <header>
+            <h1>Modifier Professeurs</h1>
+            <a href="{% url 'teacher:index' %}">
+                <button>Retour</button>
+            </a>
+        </header>
+        
+
+        <div class="form-container">
+            <h2>Formulaire de modification professeurs</h2>
+            <form id="add-prof-form" method="post">
+                {{ form }}
+                {% csrf_token %}
+                <br><br>
+
+                <div class="form-actions">
+                    <button type="submit" class="save-button">Enregistrer</button>
+                    <button type="button" class="cancel-button" onclick="cancel()">Annuler</button>
+                </div>
+               
+               
+                <div class="form-message" id="form-message"></div> 
+            </form>
+        </div>
+    </div>
+
+   
+    {% endblock content %}

@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DASHBOARD</title>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    
+    {% block content %}
+
+    <div class="main-content">
+        <header>
+            <h1>WELCOME </h1>
+        </header>
+
+        <section class="stats">
+            <div class="card">
+                <h3>Élèves</h3>
+                <p>Nombre d'élèves : 1,234</p>
+            </div>
+            <div class="card">
+                <h3>Professeurs</h3>
+                <p>Nombre de professeurs : 56</p>
+            </div>
+            <div class="card">
+                <h3>Administrateurs</h3>
+                <p>Nombre d'administrateurs : 12</p>
+            </div>
+            <div class="card">
+                <h3>Genre d'élèves</h3>
+                <canvas id="genderChart"></canvas>
+            </div>
+        </section>
+    </div>
+
+  
+
+    {% endblock content %}
+
+
